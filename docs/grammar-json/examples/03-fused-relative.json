@@ -1,0 +1,292 @@
+{
+  "schemaVersion": "1.0.0",
+  "profile": "sentence-lab-pedagogical-en-v1",
+  "source": {
+    "text": "What he said surprised me.",
+    "language": "en",
+    "offsetUnit": "utf16_code_unit"
+  },
+  "status": "complete",
+  "tokens": [
+    {
+      "id": "t1",
+      "text": "What",
+      "range": {
+        "start": 0,
+        "end": 4
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t2",
+      "text": "he",
+      "range": {
+        "start": 5,
+        "end": 7
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t3",
+      "text": "said",
+      "range": {
+        "start": 8,
+        "end": 12
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t4",
+      "text": "surprised",
+      "range": {
+        "start": 13,
+        "end": 22
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t5",
+      "text": "me",
+      "range": {
+        "start": 23,
+        "end": 25
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t6",
+      "text": ".",
+      "range": {
+        "start": 25,
+        "end": 26
+      },
+      "kind": "punctuation"
+    }
+  ],
+  "analyses": [
+    {
+      "id": "reading_1",
+      "reading": "使我吃惊的是他说的内容。",
+      "translation": "他说的话让我吃惊。",
+      "rootNodeId": "main",
+      "nodes": [
+        {
+          "id": "n1",
+          "category": "word",
+          "tokenIds": [
+            "t1"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "What 的词类为 PRON。"
+          },
+          "lexical": {
+            "upos": "PRON"
+          }
+        },
+        {
+          "id": "n2",
+          "category": "word",
+          "tokenIds": [
+            "t2"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "he 的词类为 PRON。"
+          },
+          "lexical": {
+            "upos": "PRON"
+          }
+        },
+        {
+          "id": "n3",
+          "category": "word",
+          "tokenIds": [
+            "t3"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "said 的词类为 VERB。"
+          },
+          "lexical": {
+            "upos": "VERB"
+          }
+        },
+        {
+          "id": "n4",
+          "category": "word",
+          "tokenIds": [
+            "t4"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "surprised 的词类为 VERB。"
+          },
+          "lexical": {
+            "upos": "VERB"
+          }
+        },
+        {
+          "id": "n5",
+          "category": "word",
+          "tokenIds": [
+            "t5"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "me 的词类为 PRON。"
+          },
+          "lexical": {
+            "upos": "PRON"
+          }
+        },
+        {
+          "id": "n6",
+          "category": "punctuation",
+          "tokenIds": [
+            "t6"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": ". 的词类为 PUNCT。"
+          }
+        },
+        {
+          "id": "fused_relative",
+          "category": "clause",
+          "tokenIds": [
+            "t1",
+            "t2",
+            "t3"
+          ],
+          "children": [
+            {
+              "nodeId": "n1",
+              "function": "direct_object",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "n2",
+              "function": "subject",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "n3",
+              "function": "predicate",
+              "necessity": "required"
+            }
+          ],
+          "explanation": {
+            "summary": "教学上按主谓宾关系分析，但原词序为宾语—主语—谓语；What 不得重排。"
+          },
+          "clause": {
+            "form": "relative",
+            "finiteness": "finite",
+            "voice": "active",
+            "polarity": "positive",
+            "pattern": "SVO",
+            "patternExplanation": "教学上按主谓宾关系分析，但原词序为宾语—主语—谓语；What 不得重排。"
+          },
+          "construction": "fused_relative"
+        },
+        {
+          "id": "main",
+          "category": "clause",
+          "tokenIds": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6"
+          ],
+          "children": [
+            {
+              "nodeId": "fused_relative",
+              "function": "subject",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "n4",
+              "function": "predicate",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "n5",
+              "function": "direct_object",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "n6",
+              "function": "punctuation",
+              "necessity": "not_applicable"
+            }
+          ],
+          "explanation": {
+            "summary": "整个融合关系结构占据主语位置。此 profile 使用从句节点承载该教学表示。"
+          },
+          "clause": {
+            "form": "declarative",
+            "finiteness": "finite",
+            "voice": "active",
+            "polarity": "positive",
+            "pattern": "SVO",
+            "patternExplanation": "整个融合关系结构占据主语位置。此 profile 使用从句节点承载该教学表示。"
+          }
+        }
+      ],
+      "relations": [],
+      "teachingPlans": [
+        {
+          "ownerNodeId": "fused_relative",
+          "stages": [
+            {
+              "id": "full",
+              "kind": "complete",
+              "title": "完整结构",
+              "visibleNodeIds": [
+                "n1",
+                "n2",
+                "n3"
+              ],
+              "explanation": {
+                "summary": "按原词序显示全部直接子成分。"
+              },
+              "omissions": []
+            }
+          ]
+        },
+        {
+          "ownerNodeId": "main",
+          "stages": [
+            {
+              "id": "full",
+              "kind": "complete",
+              "title": "完整结构",
+              "visibleNodeIds": [
+                "fused_relative",
+                "n4",
+                "n5",
+                "n6"
+              ],
+              "explanation": {
+                "summary": "按原词序显示全部直接子成分。"
+              },
+              "omissions": []
+            }
+          ]
+        }
+      ],
+      "certainty": {
+        "level": "high",
+        "reason": "人工编写的规格示例；未进行独立语言学审校。"
+      }
+    }
+  ],
+  "preferredAnalysisId": "reading_1",
+  "issues": [],
+  "provenance": {
+    "producer": "ai",
+    "reviewStatus": "unreviewed"
+  }
+}

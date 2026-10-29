@@ -1,0 +1,1378 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:sentence-lab:grammar-analysis:1.0.0",
+  "title": "Sentence Lab Grammar Analysis 1.0.0",
+  "description": "句间的英语句法教学交换格式。参考成分结构、形式/功能区分与可选 UD；不是任何外部语言学标准的官方 JSON。",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "profile": {
+      "const": "sentence-lab-pedagogical-en-v1"
+    },
+    "source": {
+      "$ref": "#/$defs/source"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "complete",
+        "partial",
+        "unsupported"
+      ]
+    },
+    "tokens": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/token"
+      },
+      "minItems": 0,
+      "maxItems": 512
+    },
+    "analyses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/analysis"
+      },
+      "minItems": 0,
+      "maxItems": 4
+    },
+    "preferredAnalysisId": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/id"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/issue"
+      },
+      "minItems": 0,
+      "maxItems": 64
+    },
+    "provenance": {
+      "$ref": "#/$defs/provenance"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "profile",
+    "source",
+    "status",
+    "tokens",
+    "analyses",
+    "preferredAnalysisId",
+    "issues"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "complete"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "tokens": {
+            "minItems": 1
+          },
+          "analyses": {
+            "minItems": 1
+          },
+          "preferredAnalysisId": {
+            "$ref": "#/$defs/id"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "partial"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "tokens": {
+            "minItems": 1
+          },
+          "analyses": {
+            "minItems": 1
+          },
+          "preferredAnalysisId": {
+            "$ref": "#/$defs/id"
+          },
+          "issues": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "unsupported"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "analyses": {
+            "maxItems": 0
+          },
+          "preferredAnalysisId": {
+            "type": "null"
+          },
+          "issues": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+    },
+    "range": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "end": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "description": "原始 source.text 的 UTF-16 左闭右开区间；必须 start < end，禁止隐式正规化。"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096,
+          "description": "原样保存的一条英语句子，包含原始空格、换行与标点。"
+        },
+        "language": {
+          "const": "en"
+        },
+        "offsetUnit": {
+          "const": "utf16_code_unit"
+        }
+      },
+      "required": [
+        "text",
+        "language",
+        "offsetUnit"
+      ]
+    },
+    "token": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "必须等于 source.text.slice(range.start, range.end)。"
+        },
+        "range": {
+          "$ref": "#/$defs/range"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "word",
+            "punctuation",
+            "symbol"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "text",
+        "range",
+        "kind"
+      ],
+      "description": "表层切分单元，不等于 UD syntactic word；缩约词允许拆为相邻、不重叠的表层 token。"
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "level",
+        "reason"
+      ],
+      "description": "定性自评，不代表经过校准的概率或人工审核结果。"
+    },
+    "explanation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000,
+          "description": "中文解释。"
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "description": "可选教学提问，不是普遍有效的句法判定规则。"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "minItems": 0,
+          "maxItems": 12
+        }
+      },
+      "required": [
+        "summary"
+      ]
+    },
+    "morphology": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tense": {
+          "type": "string",
+          "enum": [
+            "past",
+            "present",
+            "unspecified"
+          ]
+        },
+        "verbForm": {
+          "type": "string",
+          "enum": [
+            "finite",
+            "infinitive",
+            "participle",
+            "gerund",
+            "base",
+            "unspecified"
+          ]
+        },
+        "number": {
+          "type": "string",
+          "enum": [
+            "singular",
+            "plural",
+            "unspecified"
+          ]
+        },
+        "person": {
+          "type": "string",
+          "enum": [
+            "first",
+            "second",
+            "third",
+            "unspecified"
+          ]
+        },
+        "degree": {
+          "type": "string",
+          "enum": [
+            "positive",
+            "comparative",
+            "superlative",
+            "unspecified"
+          ]
+        },
+        "case": {
+          "type": "string",
+          "enum": [
+            "nominative",
+            "accusative",
+            "genitive",
+            "unspecified"
+          ]
+        }
+      },
+      "required": []
+    },
+    "lexical": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lemma": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "upos": {
+          "type": "string",
+          "enum": [
+            "ADJ",
+            "ADP",
+            "ADV",
+            "AUX",
+            "CCONJ",
+            "DET",
+            "INTJ",
+            "NOUN",
+            "NUM",
+            "PART",
+            "PRON",
+            "PROPN",
+            "PUNCT",
+            "SCONJ",
+            "SYM",
+            "VERB",
+            "X"
+          ]
+        },
+        "morphology": {
+          "$ref": "#/$defs/morphology"
+        }
+      },
+      "required": [
+        "upos"
+      ]
+    },
+    "function": {
+      "type": "string",
+      "enum": [
+        "subject",
+        "predicate",
+        "direct_object",
+        "indirect_object",
+        "subject_complement",
+        "object_complement",
+        "oblique_complement",
+        "clausal_complement",
+        "adjunct",
+        "head",
+        "determiner",
+        "modifier",
+        "complement",
+        "marker",
+        "coordinator",
+        "conjunct",
+        "auxiliary",
+        "negator",
+        "particle",
+        "appositive",
+        "discourse",
+        "vocative",
+        "supplement",
+        "expletive",
+        "punctuation",
+        "unknown"
+      ]
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nodeId": {
+          "$ref": "#/$defs/id"
+        },
+        "function": {
+          "$ref": "#/$defs/function"
+        },
+        "necessity": {
+          "type": "string",
+          "enum": [
+            "required",
+            "optional",
+            "context_dependent",
+            "not_applicable",
+            "unknown"
+          ]
+        },
+        "explanation": {
+          "$ref": "#/$defs/explanation"
+        }
+      },
+      "required": [
+        "nodeId",
+        "function",
+        "necessity"
+      ],
+      "description": "function 是子节点相对于当前父节点的功能；不代表语义角色。necessity 为本例判断，不能由类别机械推断。"
+    },
+    "clauseFeatures": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "form": {
+          "type": "string",
+          "enum": [
+            "declarative",
+            "interrogative",
+            "imperative",
+            "exclamative",
+            "relative",
+            "other",
+            "unknown"
+          ]
+        },
+        "finiteness": {
+          "type": "string",
+          "enum": [
+            "finite",
+            "nonfinite",
+            "verbless",
+            "unknown"
+          ]
+        },
+        "voice": {
+          "type": "string",
+          "enum": [
+            "active",
+            "passive",
+            "not_applicable",
+            "unknown"
+          ]
+        },
+        "polarity": {
+          "type": "string",
+          "enum": [
+            "positive",
+            "negative",
+            "unknown"
+          ]
+        },
+        "pattern": {
+          "type": "string",
+          "enum": [
+            "SV",
+            "SVO",
+            "SVC",
+            "SVOO",
+            "SVOC",
+            "SVA",
+            "SVOA",
+            "other",
+            "undetermined"
+          ]
+        },
+        "patternExplanation": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "tense": {
+          "type": "string",
+          "enum": [
+            "present",
+            "past",
+            "unspecified"
+          ]
+        },
+        "aspect": {
+          "type": "string",
+          "enum": [
+            "simple",
+            "progressive",
+            "perfect",
+            "perfect_progressive",
+            "unspecified"
+          ]
+        }
+      },
+      "required": [
+        "form",
+        "finiteness",
+        "voice",
+        "polarity",
+        "pattern",
+        "patternExplanation"
+      ],
+      "description": "pattern 为教学映射，不是 UD 标签；A 在 SVA/SVOA 中表示该构式所需的状语性补足成分。"
+    },
+    "node": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "word",
+            "punctuation",
+            "noun_phrase",
+            "verb_group",
+            "verb_phrase",
+            "adjective_phrase",
+            "adverb_phrase",
+            "prepositional_phrase",
+            "clause",
+            "coordination",
+            "fragment",
+            "gap"
+          ]
+        },
+        "tokenIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "minItems": 0,
+          "maxItems": 2048,
+          "uniqueItems": true
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/edge"
+          },
+          "minItems": 0,
+          "maxItems": 512
+        },
+        "explanation": {
+          "$ref": "#/$defs/explanation"
+        },
+        "lexical": {
+          "$ref": "#/$defs/lexical"
+        },
+        "clause": {
+          "$ref": "#/$defs/clauseFeatures"
+        },
+        "construction": {
+          "type": "string",
+          "enum": [
+            "ordinary",
+            "content_clause",
+            "relative_clause",
+            "fused_relative",
+            "adverbial_clause",
+            "infinitival",
+            "participial",
+            "gerund_participial",
+            "comparative",
+            "existential",
+            "cleft",
+            "inversion",
+            "ellipsis",
+            "other"
+          ]
+        },
+        "headNodeId": {
+          "$ref": "#/$defs/id"
+        },
+        "gap": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "relative_gap",
+                "understood_subject",
+                "ellipsis",
+                "other"
+              ]
+            },
+            "antecedentNodeId": {
+              "$ref": "#/$defs/id"
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            }
+          },
+          "required": [
+            "kind",
+            "description"
+          ]
+        },
+        "certainty": {
+          "$ref": "#/$defs/evidence"
+        }
+      },
+      "required": [
+        "id",
+        "category",
+        "tokenIds",
+        "children",
+        "explanation"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "category": {
+                "const": "word"
+              }
+            },
+            "required": [
+              "category"
+            ]
+          },
+          "then": {
+            "required": [
+              "lexical"
+            ],
+            "properties": {
+              "tokenIds": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/id"
+                },
+                "minItems": 1,
+                "maxItems": 2048,
+                "uniqueItems": true
+              },
+              "children": {
+                "maxItems": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "category": {
+                "const": "punctuation"
+              }
+            },
+            "required": [
+              "category"
+            ]
+          },
+          "then": {
+            "properties": {
+              "tokenIds": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/id"
+                },
+                "minItems": 1,
+                "maxItems": 2048,
+                "uniqueItems": true
+              },
+              "children": {
+                "maxItems": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "category": {
+                "const": "gap"
+              }
+            },
+            "required": [
+              "category"
+            ]
+          },
+          "then": {
+            "required": [
+              "gap"
+            ],
+            "properties": {
+              "tokenIds": {
+                "maxItems": 0
+              },
+              "children": {
+                "maxItems": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "category": {
+                "const": "clause"
+              }
+            },
+            "required": [
+              "category"
+            ]
+          },
+          "then": {
+            "required": [
+              "clause"
+            ],
+            "properties": {
+              "children": {
+                "minItems": 1
+              },
+              "tokenIds": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/id"
+                },
+                "minItems": 1,
+                "maxItems": 2048,
+                "uniqueItems": true
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "category": {
+                "enum": [
+                  "noun_phrase",
+                  "verb_group",
+                  "verb_phrase",
+                  "adjective_phrase",
+                  "adverb_phrase",
+                  "prepositional_phrase",
+                  "coordination",
+                  "fragment"
+                ]
+              }
+            },
+            "required": [
+              "category"
+            ]
+          },
+          "then": {
+            "properties": {
+              "children": {
+                "minItems": 1
+              },
+              "tokenIds": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/id"
+                },
+                "minItems": 1,
+                "maxItems": 2048,
+                "uniqueItems": true
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "category": {
+                "not": {
+                  "const": "word"
+                }
+              }
+            },
+            "required": [
+              "category"
+            ]
+          },
+          "then": {
+            "not": {
+              "required": [
+                "lexical"
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "category": {
+                "not": {
+                  "const": "clause"
+                }
+              }
+            },
+            "required": [
+              "category"
+            ]
+          },
+          "then": {
+            "not": {
+              "required": [
+                "clause"
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "category": {
+                "not": {
+                  "const": "gap"
+                }
+              }
+            },
+            "required": [
+              "category"
+            ]
+          },
+          "then": {
+            "not": {
+              "required": [
+                "gap"
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "category": {
+                "const": "coordination"
+              }
+            },
+            "required": [
+              "category"
+            ]
+          },
+          "then": {
+            "properties": {
+              "children": {
+                "contains": {
+                  "properties": {
+                    "function": {
+                      "const": "conjunct"
+                    }
+                  },
+                  "required": [
+                    "function"
+                  ]
+                },
+                "minContains": 2
+              }
+            }
+          }
+        }
+      ]
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "modifies",
+            "complements",
+            "corefers",
+            "relative_reference",
+            "understood_subject",
+            "ellipsis_resolution",
+            "scope"
+          ]
+        },
+        "sourceNodeId": {
+          "$ref": "#/$defs/id"
+        },
+        "targetNodeId": {
+          "$ref": "#/$defs/id"
+        },
+        "explanation": {
+          "$ref": "#/$defs/explanation"
+        },
+        "certainty": {
+          "$ref": "#/$defs/evidence"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "sourceNodeId",
+        "targetNodeId",
+        "explanation"
+      ],
+      "description": "跨节点解释关系；不是树的 children，也不是 UD。modifies 方向为修饰语到被修饰对象。"
+    },
+    "stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "skeleton",
+            "expansion",
+            "complete"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "visibleNodeIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "minItems": 1,
+          "maxItems": 2048,
+          "uniqueItems": true
+        },
+        "focusNodeIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "minItems": 0,
+          "maxItems": 2048,
+          "uniqueItems": true
+        },
+        "explanation": {
+          "$ref": "#/$defs/explanation"
+        },
+        "omissions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "nodeId": {
+                "$ref": "#/$defs/id"
+              },
+              "reason": {
+                "type": "string",
+                "enum": [
+                  "optional_modifier",
+                  "teaching_scaffold"
+                ]
+              },
+              "explanation": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000
+              }
+            },
+            "required": [
+              "nodeId",
+              "reason",
+              "explanation"
+            ]
+          },
+          "minItems": 0,
+          "maxItems": 512
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "title",
+        "visibleNodeIds",
+        "explanation",
+        "omissions"
+      ],
+      "description": "当前面板的可见节点前沿；引用原分析节点，不重写英文或重排原词序。"
+    },
+    "teachingPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ownerNodeId": {
+          "$ref": "#/$defs/id"
+        },
+        "stages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/stage"
+          },
+          "minItems": 1,
+          "maxItems": 32
+        }
+      },
+      "required": [
+        "ownerNodeId",
+        "stages"
+      ],
+      "description": "每个可展开分支独立计划。只有一层时使用 kind=complete，前端展示“已是基本骨骼”。"
+    },
+    "udWord": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "form": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "tokenIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "minItems": 1,
+          "maxItems": 2048,
+          "uniqueItems": true
+        },
+        "lemma": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "upos": {
+          "type": "string",
+          "enum": [
+            "ADJ",
+            "ADP",
+            "ADV",
+            "AUX",
+            "CCONJ",
+            "DET",
+            "INTJ",
+            "NOUN",
+            "NUM",
+            "PART",
+            "PRON",
+            "PROPN",
+            "PUNCT",
+            "SCONJ",
+            "SYM",
+            "VERB",
+            "X"
+          ]
+        },
+        "features": {
+          "type": "object",
+          "maxProperties": 24,
+          "propertyNames": {
+            "pattern": "^[A-Z][A-Za-z0-9]*$"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          }
+        }
+      },
+      "required": [
+        "id",
+        "form",
+        "tokenIds",
+        "upos"
+      ],
+      "description": "可选 UD 层句法词；多个句法词可引用同一表层 token（如不规则缩约词）。"
+    },
+    "udRelation": {
+      "type": "string",
+      "pattern": "^(acl|advcl|advmod|amod|appos|aux|case|cc|ccomp|clf|compound|conj|cop|csubj|dep|det|discourse|dislocated|expl|fixed|flat|goeswith|iobj|list|mark|nmod|nsubj|nummod|obj|obl|orphan|parataxis|punct|reparandum|root|vocative|xcomp)(:[a-z][a-z0-9_]*)?$"
+    },
+    "udEdge": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "headWordId": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dependentWordId": {
+          "$ref": "#/$defs/id"
+        },
+        "relation": {
+          "$ref": "#/$defs/udRelation"
+        }
+      },
+      "required": [
+        "headWordId",
+        "dependentWordId",
+        "relation"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "relation": {
+                "const": "root"
+              }
+            },
+            "required": [
+              "relation"
+            ]
+          },
+          "then": {
+            "properties": {
+              "headWordId": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "headWordId": {
+                "$ref": "#/$defs/id"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "dependencies": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "scheme": {
+          "const": "ud-v2-basic"
+        },
+        "words": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/udWord"
+          },
+          "minItems": 1,
+          "maxItems": 1024
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/udEdge"
+          },
+          "minItems": 1,
+          "maxItems": 1024
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "scheme",
+        "words",
+        "edges"
+      ],
+      "description": "可选完整基本依存树；本 JSON 不是 CoNLL-U，不支持 UD enhanced empty nodes；不可从教学树机械推导。"
+    },
+    "analysis": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "reading": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000,
+          "description": "本方案的语义解读，歧义方案必须说明差别。"
+        },
+        "translation": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "rootNodeId": {
+          "$ref": "#/$defs/id"
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/node"
+          },
+          "minItems": 1,
+          "maxItems": 2048
+        },
+        "relations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/relation"
+          },
+          "minItems": 0,
+          "maxItems": 2048
+        },
+        "teachingPlans": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/teachingPlan"
+          },
+          "minItems": 0,
+          "maxItems": 512
+        },
+        "dependencies": {
+          "$ref": "#/$defs/dependencies"
+        },
+        "certainty": {
+          "$ref": "#/$defs/evidence"
+        }
+      },
+      "required": [
+        "id",
+        "reading",
+        "translation",
+        "rootNodeId",
+        "nodes",
+        "relations",
+        "teachingPlans",
+        "certainty"
+      ]
+    },
+    "issue": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "string",
+          "enum": [
+            "ambiguous_attachment",
+            "ambiguous_category",
+            "nonstandard_input",
+            "fragment",
+            "multiple_sentences",
+            "unsupported_construction",
+            "insufficient_context",
+            "uncertain_analysis",
+            "tokenization_uncertain",
+            "other"
+          ]
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "warning",
+            "error"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "tokenIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "minItems": 0,
+          "maxItems": 2048,
+          "uniqueItems": true
+        },
+        "analysisIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "minItems": 0,
+          "maxItems": 2048,
+          "uniqueItems": true
+        },
+        "suggestion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "code",
+        "severity",
+        "message",
+        "tokenIds",
+        "analysisIds"
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "producer": {
+          "type": "string",
+          "enum": [
+            "human",
+            "ai",
+            "parser",
+            "hybrid"
+          ]
+        },
+        "model": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "promptVersion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "reviewStatus": {
+          "type": "string",
+          "enum": [
+            "unreviewed",
+            "human_reviewed"
+          ]
+        },
+        "reviewNote": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "producer",
+        "reviewStatus"
+      ]
+    }
+  }
+}

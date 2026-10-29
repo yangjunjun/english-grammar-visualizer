@@ -1,0 +1,773 @@
+{
+  "schemaVersion": "1.0.0",
+  "profile": "sentence-lab-pedagogical-en-v1",
+  "source": {
+    "text": "I saw the man with a telescope.",
+    "language": "en",
+    "offsetUnit": "utf16_code_unit"
+  },
+  "status": "complete",
+  "tokens": [
+    {
+      "id": "t1",
+      "text": "I",
+      "range": {
+        "start": 0,
+        "end": 1
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t2",
+      "text": "saw",
+      "range": {
+        "start": 2,
+        "end": 5
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t3",
+      "text": "the",
+      "range": {
+        "start": 6,
+        "end": 9
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t4",
+      "text": "man",
+      "range": {
+        "start": 10,
+        "end": 13
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t5",
+      "text": "with",
+      "range": {
+        "start": 14,
+        "end": 18
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t6",
+      "text": "a",
+      "range": {
+        "start": 19,
+        "end": 20
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t7",
+      "text": "telescope",
+      "range": {
+        "start": 21,
+        "end": 30
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t8",
+      "text": ".",
+      "range": {
+        "start": 30,
+        "end": 31
+      },
+      "kind": "punctuation"
+    }
+  ],
+  "analyses": [
+    {
+      "id": "reading_instrument",
+      "reading": "我用望远镜看见男人。",
+      "translation": "我用望远镜看见了那个男人。",
+      "rootNodeId": "main",
+      "nodes": [
+        {
+          "id": "n1",
+          "category": "word",
+          "tokenIds": [
+            "t1"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "I 的词类为 PRON。"
+          },
+          "lexical": {
+            "upos": "PRON"
+          }
+        },
+        {
+          "id": "n2",
+          "category": "word",
+          "tokenIds": [
+            "t2"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "saw 的词类为 VERB。"
+          },
+          "lexical": {
+            "upos": "VERB"
+          }
+        },
+        {
+          "id": "n3",
+          "category": "word",
+          "tokenIds": [
+            "t3"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "the 的词类为 DET。"
+          },
+          "lexical": {
+            "upos": "DET"
+          }
+        },
+        {
+          "id": "n4",
+          "category": "word",
+          "tokenIds": [
+            "t4"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "man 的词类为 NOUN。"
+          },
+          "lexical": {
+            "upos": "NOUN"
+          }
+        },
+        {
+          "id": "n5",
+          "category": "word",
+          "tokenIds": [
+            "t5"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "with 的词类为 ADP。"
+          },
+          "lexical": {
+            "upos": "ADP"
+          }
+        },
+        {
+          "id": "n6",
+          "category": "word",
+          "tokenIds": [
+            "t6"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "a 的词类为 DET。"
+          },
+          "lexical": {
+            "upos": "DET"
+          }
+        },
+        {
+          "id": "n7",
+          "category": "word",
+          "tokenIds": [
+            "t7"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "telescope 的词类为 NOUN。"
+          },
+          "lexical": {
+            "upos": "NOUN"
+          }
+        },
+        {
+          "id": "n8",
+          "category": "punctuation",
+          "tokenIds": [
+            "t8"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": ". 的词类为 PUNCT。"
+          }
+        },
+        {
+          "id": "np_telescope",
+          "category": "noun_phrase",
+          "tokenIds": [
+            "t6",
+            "t7"
+          ],
+          "children": [
+            {
+              "nodeId": "n6",
+              "function": "determiner",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "n7",
+              "function": "head",
+              "necessity": "required"
+            }
+          ],
+          "explanation": {
+            "summary": "a telescope 是介词的补足成分。"
+          }
+        },
+        {
+          "id": "pp_with",
+          "category": "prepositional_phrase",
+          "tokenIds": [
+            "t5",
+            "t6",
+            "t7"
+          ],
+          "children": [
+            {
+              "nodeId": "n5",
+              "function": "head",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "np_telescope",
+              "function": "complement",
+              "necessity": "required"
+            }
+          ],
+          "explanation": {
+            "summary": "介词短语，附着位置决定解读。"
+          }
+        },
+        {
+          "id": "np_man",
+          "category": "noun_phrase",
+          "tokenIds": [
+            "t3",
+            "t4"
+          ],
+          "children": [
+            {
+              "nodeId": "n3",
+              "function": "determiner",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "n4",
+              "function": "head",
+              "necessity": "required"
+            }
+          ],
+          "explanation": {
+            "summary": "the man 为宾语名词短语。"
+          }
+        },
+        {
+          "id": "main",
+          "category": "clause",
+          "tokenIds": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "children": [
+            {
+              "nodeId": "n1",
+              "function": "subject",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "n2",
+              "function": "predicate",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "np_man",
+              "function": "direct_object",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "pp_with",
+              "function": "adjunct",
+              "necessity": "optional"
+            },
+            {
+              "nodeId": "n8",
+              "function": "punctuation",
+              "necessity": "not_applicable"
+            }
+          ],
+          "explanation": {
+            "summary": "主句为主谓宾，with 短语有两种附着分析。"
+          },
+          "clause": {
+            "form": "declarative",
+            "finiteness": "finite",
+            "voice": "active",
+            "polarity": "positive",
+            "pattern": "SVO",
+            "patternExplanation": "主句为主谓宾，with 短语有两种附着分析。"
+          }
+        }
+      ],
+      "relations": [
+        {
+          "id": "r1",
+          "type": "modifies",
+          "sourceNodeId": "pp_with",
+          "targetNodeId": "n2",
+          "explanation": {
+            "summary": "附着在 saw 上。"
+          }
+        }
+      ],
+      "teachingPlans": [
+        {
+          "ownerNodeId": "np_telescope",
+          "stages": [
+            {
+              "id": "full",
+              "kind": "complete",
+              "title": "完整结构",
+              "visibleNodeIds": [
+                "n6",
+                "n7"
+              ],
+              "explanation": {
+                "summary": "按原词序显示全部直接子成分。"
+              },
+              "omissions": []
+            }
+          ]
+        },
+        {
+          "ownerNodeId": "pp_with",
+          "stages": [
+            {
+              "id": "full",
+              "kind": "complete",
+              "title": "完整结构",
+              "visibleNodeIds": [
+                "n5",
+                "np_telescope"
+              ],
+              "explanation": {
+                "summary": "按原词序显示全部直接子成分。"
+              },
+              "omissions": []
+            }
+          ]
+        },
+        {
+          "ownerNodeId": "np_man",
+          "stages": [
+            {
+              "id": "full",
+              "kind": "complete",
+              "title": "完整结构",
+              "visibleNodeIds": [
+                "n3",
+                "n4"
+              ],
+              "explanation": {
+                "summary": "按原词序显示全部直接子成分。"
+              },
+              "omissions": []
+            }
+          ]
+        },
+        {
+          "ownerNodeId": "main",
+          "stages": [
+            {
+              "id": "full",
+              "kind": "complete",
+              "title": "完整结构",
+              "visibleNodeIds": [
+                "n1",
+                "n2",
+                "np_man",
+                "pp_with",
+                "n8"
+              ],
+              "explanation": {
+                "summary": "按原词序显示全部直接子成分。"
+              },
+              "omissions": []
+            }
+          ]
+        }
+      ],
+      "certainty": {
+        "level": "medium",
+        "reason": "缺少上下文，两种分析都可能；首选仅用于默认展示。"
+      }
+    },
+    {
+      "id": "reading_man",
+      "reading": "男人携带望远镜。",
+      "translation": "我看见了那个带着望远镜的男人。",
+      "rootNodeId": "main",
+      "nodes": [
+        {
+          "id": "n1",
+          "category": "word",
+          "tokenIds": [
+            "t1"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "I 的词类为 PRON。"
+          },
+          "lexical": {
+            "upos": "PRON"
+          }
+        },
+        {
+          "id": "n2",
+          "category": "word",
+          "tokenIds": [
+            "t2"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "saw 的词类为 VERB。"
+          },
+          "lexical": {
+            "upos": "VERB"
+          }
+        },
+        {
+          "id": "n3",
+          "category": "word",
+          "tokenIds": [
+            "t3"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "the 的词类为 DET。"
+          },
+          "lexical": {
+            "upos": "DET"
+          }
+        },
+        {
+          "id": "n4",
+          "category": "word",
+          "tokenIds": [
+            "t4"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "man 的词类为 NOUN。"
+          },
+          "lexical": {
+            "upos": "NOUN"
+          }
+        },
+        {
+          "id": "n5",
+          "category": "word",
+          "tokenIds": [
+            "t5"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "with 的词类为 ADP。"
+          },
+          "lexical": {
+            "upos": "ADP"
+          }
+        },
+        {
+          "id": "n6",
+          "category": "word",
+          "tokenIds": [
+            "t6"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "a 的词类为 DET。"
+          },
+          "lexical": {
+            "upos": "DET"
+          }
+        },
+        {
+          "id": "n7",
+          "category": "word",
+          "tokenIds": [
+            "t7"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "telescope 的词类为 NOUN。"
+          },
+          "lexical": {
+            "upos": "NOUN"
+          }
+        },
+        {
+          "id": "n8",
+          "category": "punctuation",
+          "tokenIds": [
+            "t8"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": ". 的词类为 PUNCT。"
+          }
+        },
+        {
+          "id": "np_telescope",
+          "category": "noun_phrase",
+          "tokenIds": [
+            "t6",
+            "t7"
+          ],
+          "children": [
+            {
+              "nodeId": "n6",
+              "function": "determiner",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "n7",
+              "function": "head",
+              "necessity": "required"
+            }
+          ],
+          "explanation": {
+            "summary": "a telescope 是介词的补足成分。"
+          }
+        },
+        {
+          "id": "pp_with",
+          "category": "prepositional_phrase",
+          "tokenIds": [
+            "t5",
+            "t6",
+            "t7"
+          ],
+          "children": [
+            {
+              "nodeId": "n5",
+              "function": "head",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "np_telescope",
+              "function": "complement",
+              "necessity": "required"
+            }
+          ],
+          "explanation": {
+            "summary": "介词短语，附着位置决定解读。"
+          }
+        },
+        {
+          "id": "np_man",
+          "category": "noun_phrase",
+          "tokenIds": [
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7"
+          ],
+          "children": [
+            {
+              "nodeId": "n3",
+              "function": "determiner",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "n4",
+              "function": "head",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "pp_with",
+              "function": "modifier",
+              "necessity": "optional"
+            }
+          ],
+          "explanation": {
+            "summary": "the man 为宾语名词短语。"
+          }
+        },
+        {
+          "id": "main",
+          "category": "clause",
+          "tokenIds": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "children": [
+            {
+              "nodeId": "n1",
+              "function": "subject",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "n2",
+              "function": "predicate",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "np_man",
+              "function": "direct_object",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "n8",
+              "function": "punctuation",
+              "necessity": "not_applicable"
+            }
+          ],
+          "explanation": {
+            "summary": "主句为主谓宾，with 短语有两种附着分析。"
+          },
+          "clause": {
+            "form": "declarative",
+            "finiteness": "finite",
+            "voice": "active",
+            "polarity": "positive",
+            "pattern": "SVO",
+            "patternExplanation": "主句为主谓宾，with 短语有两种附着分析。"
+          }
+        }
+      ],
+      "relations": [
+        {
+          "id": "r1",
+          "type": "modifies",
+          "sourceNodeId": "pp_with",
+          "targetNodeId": "n4",
+          "explanation": {
+            "summary": "附着在 man 上。"
+          }
+        }
+      ],
+      "teachingPlans": [
+        {
+          "ownerNodeId": "np_telescope",
+          "stages": [
+            {
+              "id": "full",
+              "kind": "complete",
+              "title": "完整结构",
+              "visibleNodeIds": [
+                "n6",
+                "n7"
+              ],
+              "explanation": {
+                "summary": "按原词序显示全部直接子成分。"
+              },
+              "omissions": []
+            }
+          ]
+        },
+        {
+          "ownerNodeId": "pp_with",
+          "stages": [
+            {
+              "id": "full",
+              "kind": "complete",
+              "title": "完整结构",
+              "visibleNodeIds": [
+                "n5",
+                "np_telescope"
+              ],
+              "explanation": {
+                "summary": "按原词序显示全部直接子成分。"
+              },
+              "omissions": []
+            }
+          ]
+        },
+        {
+          "ownerNodeId": "np_man",
+          "stages": [
+            {
+              "id": "full",
+              "kind": "complete",
+              "title": "完整结构",
+              "visibleNodeIds": [
+                "n3",
+                "n4",
+                "pp_with"
+              ],
+              "explanation": {
+                "summary": "按原词序显示全部直接子成分。"
+              },
+              "omissions": []
+            }
+          ]
+        },
+        {
+          "ownerNodeId": "main",
+          "stages": [
+            {
+              "id": "full",
+              "kind": "complete",
+              "title": "完整结构",
+              "visibleNodeIds": [
+                "n1",
+                "n2",
+                "np_man",
+                "n8"
+              ],
+              "explanation": {
+                "summary": "按原词序显示全部直接子成分。"
+              },
+              "omissions": []
+            }
+          ]
+        }
+      ],
+      "certainty": {
+        "level": "medium",
+        "reason": "缺少上下文，两种分析都可能；首选仅用于默认展示。"
+      }
+    }
+  ],
+  "preferredAnalysisId": "reading_instrument",
+  "issues": [
+    {
+      "code": "ambiguous_attachment",
+      "severity": "warning",
+      "message": "with a telescope 可修饰看到的动作，也可修饰男人。",
+      "tokenIds": [
+        "t5",
+        "t6",
+        "t7"
+      ],
+      "analysisIds": [
+        "reading_instrument",
+        "reading_man"
+      ],
+      "suggestion": "结合上下文选择解读，切换时替换整个分析。"
+    }
+  ],
+  "provenance": {
+    "producer": "ai",
+    "reviewStatus": "unreviewed"
+  }
+}

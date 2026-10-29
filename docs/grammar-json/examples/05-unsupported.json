@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0.0",
+  "profile": "sentence-lab-pedagogical-en-v1",
+  "source": {
+    "text": "She left. He stayed.",
+    "language": "en",
+    "offsetUnit": "utf16_code_unit"
+  },
+  "status": "unsupported",
+  "tokens": [
+    {
+      "id": "t1",
+      "text": "She",
+      "range": {
+        "start": 0,
+        "end": 3
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t2",
+      "text": "left",
+      "range": {
+        "start": 4,
+        "end": 8
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t3",
+      "text": ".",
+      "range": {
+        "start": 8,
+        "end": 9
+      },
+      "kind": "punctuation"
+    },
+    {
+      "id": "t4",
+      "text": "He",
+      "range": {
+        "start": 10,
+        "end": 12
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t5",
+      "text": "stayed",
+      "range": {
+        "start": 13,
+        "end": 19
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t6",
+      "text": ".",
+      "range": {
+        "start": 19,
+        "end": 20
+      },
+      "kind": "punctuation"
+    }
+  ],
+  "analyses": [],
+  "preferredAnalysisId": null,
+  "issues": [
+    {
+      "code": "multiple_sentences",
+      "severity": "error",
+      "message": "1.0 的一份文档只分析一句；请先拆句。",
+      "tokenIds": [],
+      "analysisIds": [],
+      "suggestion": "分别提交 She left. 和 He stayed."
+    }
+  ],
+  "provenance": {
+    "producer": "ai",
+    "reviewStatus": "unreviewed"
+  }
+}

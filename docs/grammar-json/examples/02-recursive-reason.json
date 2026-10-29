@@ -1,0 +1,627 @@
+{
+  "schemaVersion": "1.0.0",
+  "profile": "sentence-lab-pedagogical-en-v1",
+  "source": {
+    "text": "The boy ate an apple because he was very hungry.",
+    "language": "en",
+    "offsetUnit": "utf16_code_unit"
+  },
+  "status": "complete",
+  "tokens": [
+    {
+      "id": "t1",
+      "text": "The",
+      "range": {
+        "start": 0,
+        "end": 3
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t2",
+      "text": "boy",
+      "range": {
+        "start": 4,
+        "end": 7
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t3",
+      "text": "ate",
+      "range": {
+        "start": 8,
+        "end": 11
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t4",
+      "text": "an",
+      "range": {
+        "start": 12,
+        "end": 14
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t5",
+      "text": "apple",
+      "range": {
+        "start": 15,
+        "end": 20
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t6",
+      "text": "because",
+      "range": {
+        "start": 21,
+        "end": 28
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t7",
+      "text": "he",
+      "range": {
+        "start": 29,
+        "end": 31
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t8",
+      "text": "was",
+      "range": {
+        "start": 32,
+        "end": 35
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t9",
+      "text": "very",
+      "range": {
+        "start": 36,
+        "end": 40
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t10",
+      "text": "hungry",
+      "range": {
+        "start": 41,
+        "end": 47
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t11",
+      "text": ".",
+      "range": {
+        "start": 47,
+        "end": 48
+      },
+      "kind": "punctuation"
+    }
+  ],
+  "analyses": [
+    {
+      "id": "reading_1",
+      "reading": "饥饿解释吃苹果的原因。",
+      "translation": "那个男孩因为很饿，吃了一个苹果。",
+      "rootNodeId": "main",
+      "nodes": [
+        {
+          "id": "n1",
+          "category": "word",
+          "tokenIds": [
+            "t1"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "The 的词类为 DET。"
+          },
+          "lexical": {
+            "upos": "DET"
+          }
+        },
+        {
+          "id": "n2",
+          "category": "word",
+          "tokenIds": [
+            "t2"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "boy 的词类为 NOUN。"
+          },
+          "lexical": {
+            "upos": "NOUN"
+          }
+        },
+        {
+          "id": "n3",
+          "category": "word",
+          "tokenIds": [
+            "t3"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "ate 的词类为 VERB。"
+          },
+          "lexical": {
+            "upos": "VERB"
+          }
+        },
+        {
+          "id": "n4",
+          "category": "word",
+          "tokenIds": [
+            "t4"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "an 的词类为 DET。"
+          },
+          "lexical": {
+            "upos": "DET"
+          }
+        },
+        {
+          "id": "n5",
+          "category": "word",
+          "tokenIds": [
+            "t5"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "apple 的词类为 NOUN。"
+          },
+          "lexical": {
+            "upos": "NOUN"
+          }
+        },
+        {
+          "id": "n6",
+          "category": "word",
+          "tokenIds": [
+            "t6"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "because 的词类为 SCONJ。"
+          },
+          "lexical": {
+            "upos": "SCONJ"
+          }
+        },
+        {
+          "id": "n7",
+          "category": "word",
+          "tokenIds": [
+            "t7"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "he 的词类为 PRON。"
+          },
+          "lexical": {
+            "upos": "PRON"
+          }
+        },
+        {
+          "id": "n8",
+          "category": "word",
+          "tokenIds": [
+            "t8"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "was 的词类为 AUX。"
+          },
+          "lexical": {
+            "upos": "AUX"
+          }
+        },
+        {
+          "id": "n9",
+          "category": "word",
+          "tokenIds": [
+            "t9"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "very 的词类为 ADV。"
+          },
+          "lexical": {
+            "upos": "ADV"
+          }
+        },
+        {
+          "id": "n10",
+          "category": "word",
+          "tokenIds": [
+            "t10"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "hungry 的词类为 ADJ。"
+          },
+          "lexical": {
+            "upos": "ADJ"
+          }
+        },
+        {
+          "id": "n11",
+          "category": "punctuation",
+          "tokenIds": [
+            "t11"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": ". 的词类为 PUNCT。"
+          }
+        },
+        {
+          "id": "np_boy",
+          "category": "noun_phrase",
+          "tokenIds": [
+            "t1",
+            "t2"
+          ],
+          "children": [
+            {
+              "nodeId": "n1",
+              "function": "determiner",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "n2",
+              "function": "head",
+              "necessity": "required"
+            }
+          ],
+          "explanation": {
+            "summary": "The boy 作为整体作主语。"
+          }
+        },
+        {
+          "id": "np_apple",
+          "category": "noun_phrase",
+          "tokenIds": [
+            "t4",
+            "t5"
+          ],
+          "children": [
+            {
+              "nodeId": "n4",
+              "function": "determiner",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "n5",
+              "function": "head",
+              "necessity": "required"
+            }
+          ],
+          "explanation": {
+            "summary": "an apple 作为整体作宾语。"
+          }
+        },
+        {
+          "id": "ap_hungry",
+          "category": "adjective_phrase",
+          "tokenIds": [
+            "t9",
+            "t10"
+          ],
+          "children": [
+            {
+              "nodeId": "n9",
+              "function": "modifier",
+              "necessity": "optional"
+            },
+            {
+              "nodeId": "n10",
+              "function": "head",
+              "necessity": "required"
+            }
+          ],
+          "explanation": {
+            "summary": "very 修饰 hungry，整个形容词短语作表语。"
+          }
+        },
+        {
+          "id": "reason",
+          "category": "clause",
+          "tokenIds": [
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10"
+          ],
+          "children": [
+            {
+              "nodeId": "n6",
+              "function": "marker",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "n7",
+              "function": "subject",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "n8",
+              "function": "predicate",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "ap_hungry",
+              "function": "subject_complement",
+              "necessity": "required"
+            }
+          ],
+          "explanation": {
+            "summary": "从句为主系表；because 是引导词，不属于内部主谓表。"
+          },
+          "clause": {
+            "form": "declarative",
+            "finiteness": "finite",
+            "voice": "active",
+            "polarity": "positive",
+            "pattern": "SVC",
+            "patternExplanation": "从句为主系表；because 是引导词，不属于内部主谓表。"
+          },
+          "construction": "adverbial_clause"
+        },
+        {
+          "id": "main",
+          "category": "clause",
+          "tokenIds": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8",
+            "t9",
+            "t10",
+            "t11"
+          ],
+          "children": [
+            {
+              "nodeId": "np_boy",
+              "function": "subject",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "n3",
+              "function": "predicate",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "np_apple",
+              "function": "direct_object",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "reason",
+              "function": "adjunct",
+              "necessity": "optional"
+            },
+            {
+              "nodeId": "n11",
+              "function": "punctuation",
+              "necessity": "not_applicable"
+            }
+          ],
+          "explanation": {
+            "summary": "主句是主谓宾，从句提供原因。"
+          },
+          "clause": {
+            "form": "declarative",
+            "finiteness": "finite",
+            "voice": "active",
+            "polarity": "positive",
+            "pattern": "SVO",
+            "patternExplanation": "主句是主谓宾，从句提供原因。"
+          }
+        }
+      ],
+      "relations": [
+        {
+          "id": "r1",
+          "type": "modifies",
+          "sourceNodeId": "reason",
+          "targetNodeId": "main",
+          "explanation": {
+            "summary": "原因从句修饰主句事件。"
+          }
+        },
+        {
+          "id": "r2",
+          "type": "modifies",
+          "sourceNodeId": "n9",
+          "targetNodeId": "n10",
+          "explanation": {
+            "summary": "very 修饰 hungry。"
+          }
+        }
+      ],
+      "teachingPlans": [
+        {
+          "ownerNodeId": "np_boy",
+          "stages": [
+            {
+              "id": "full",
+              "kind": "complete",
+              "title": "完整结构",
+              "visibleNodeIds": [
+                "n1",
+                "n2"
+              ],
+              "explanation": {
+                "summary": "按原词序显示全部直接子成分。"
+              },
+              "omissions": []
+            }
+          ]
+        },
+        {
+          "ownerNodeId": "np_apple",
+          "stages": [
+            {
+              "id": "full",
+              "kind": "complete",
+              "title": "完整结构",
+              "visibleNodeIds": [
+                "n4",
+                "n5"
+              ],
+              "explanation": {
+                "summary": "按原词序显示全部直接子成分。"
+              },
+              "omissions": []
+            }
+          ]
+        },
+        {
+          "ownerNodeId": "ap_hungry",
+          "stages": [
+            {
+              "id": "skeleton",
+              "kind": "skeleton",
+              "title": "中心词",
+              "visibleNodeIds": [
+                "n10"
+              ],
+              "explanation": {
+                "summary": "先看表语中心词。"
+              },
+              "omissions": [
+                {
+                  "nodeId": "n9",
+                  "reason": "optional_modifier",
+                  "explanation": "very 为可选程度修饰。"
+                }
+              ]
+            },
+            {
+              "id": "full",
+              "kind": "complete",
+              "title": "添加程度",
+              "visibleNodeIds": [
+                "n9",
+                "n10"
+              ],
+              "explanation": {
+                "summary": "very hungry 整体仍然作表语。"
+              },
+              "omissions": []
+            }
+          ]
+        },
+        {
+          "ownerNodeId": "reason",
+          "stages": [
+            {
+              "id": "skeleton",
+              "kind": "skeleton",
+              "title": "内部骨骼",
+              "visibleNodeIds": [
+                "n7",
+                "n8",
+                "ap_hungry"
+              ],
+              "explanation": {
+                "summary": "临时隐藏连接主句的引导词，只观察内部主系表；不是修改原句。"
+              },
+              "omissions": [
+                {
+                  "nodeId": "n6",
+                  "reason": "teaching_scaffold",
+                  "explanation": "because 在原从句中保留；隐藏仅服务于教学展示。"
+                }
+              ]
+            },
+            {
+              "id": "full",
+              "kind": "complete",
+              "title": "完整原因从句",
+              "visibleNodeIds": [
+                "n6",
+                "n7",
+                "n8",
+                "ap_hungry"
+              ],
+              "explanation": {
+                "summary": "恢复 because。"
+              },
+              "omissions": []
+            }
+          ]
+        },
+        {
+          "ownerNodeId": "main",
+          "stages": [
+            {
+              "id": "skeleton",
+              "kind": "skeleton",
+              "title": "基本骨骼",
+              "visibleNodeIds": [
+                "np_boy",
+                "n3",
+                "np_apple",
+                "n11"
+              ],
+              "explanation": {
+                "summary": "先看主句。"
+              },
+              "omissions": [
+                {
+                  "nodeId": "reason",
+                  "reason": "optional_modifier",
+                  "explanation": "在本例中原因从句是附加成分。"
+                }
+              ]
+            },
+            {
+              "id": "full",
+              "kind": "complete",
+              "title": "添加原因",
+              "visibleNodeIds": [
+                "np_boy",
+                "n3",
+                "np_apple",
+                "reason",
+                "n11"
+              ],
+              "explanation": {
+                "summary": "展开原因从句可分析其内部。"
+              },
+              "omissions": []
+            }
+          ]
+        }
+      ],
+      "certainty": {
+        "level": "high",
+        "reason": "人工编写的规格示例；未进行独立语言学审校。"
+      }
+    }
+  ],
+  "preferredAnalysisId": "reading_1",
+  "issues": [],
+  "provenance": {
+    "producer": "ai",
+    "reviewStatus": "unreviewed"
+  }
+}

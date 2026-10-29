@@ -1,0 +1,549 @@
+{
+  "schemaVersion": "1.0.0",
+  "profile": "sentence-lab-pedagogical-en-v1",
+  "source": {
+    "text": "The little boy ate an apple quickly.",
+    "language": "en",
+    "offsetUnit": "utf16_code_unit"
+  },
+  "status": "complete",
+  "tokens": [
+    {
+      "id": "t1",
+      "text": "The",
+      "range": {
+        "start": 0,
+        "end": 3
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t2",
+      "text": "little",
+      "range": {
+        "start": 4,
+        "end": 10
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t3",
+      "text": "boy",
+      "range": {
+        "start": 11,
+        "end": 14
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t4",
+      "text": "ate",
+      "range": {
+        "start": 15,
+        "end": 18
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t5",
+      "text": "an",
+      "range": {
+        "start": 19,
+        "end": 21
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t6",
+      "text": "apple",
+      "range": {
+        "start": 22,
+        "end": 27
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t7",
+      "text": "quickly",
+      "range": {
+        "start": 28,
+        "end": 35
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t8",
+      "text": ".",
+      "range": {
+        "start": 35,
+        "end": 36
+      },
+      "kind": "punctuation"
+    }
+  ],
+  "analyses": [
+    {
+      "id": "reading_1",
+      "reading": "一个小男孩快速地吃了苹果。",
+      "translation": "那个小男孩很快地吃了一个苹果。",
+      "rootNodeId": "main",
+      "nodes": [
+        {
+          "id": "n1",
+          "category": "word",
+          "tokenIds": [
+            "t1"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "The 的词类为 DET。"
+          },
+          "lexical": {
+            "upos": "DET"
+          }
+        },
+        {
+          "id": "n2",
+          "category": "word",
+          "tokenIds": [
+            "t2"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "little 的词类为 ADJ。"
+          },
+          "lexical": {
+            "upos": "ADJ"
+          }
+        },
+        {
+          "id": "n3",
+          "category": "word",
+          "tokenIds": [
+            "t3"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "boy 的词类为 NOUN。"
+          },
+          "lexical": {
+            "upos": "NOUN"
+          }
+        },
+        {
+          "id": "n4",
+          "category": "word",
+          "tokenIds": [
+            "t4"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "ate 的词类为 VERB。"
+          },
+          "lexical": {
+            "upos": "VERB"
+          }
+        },
+        {
+          "id": "n5",
+          "category": "word",
+          "tokenIds": [
+            "t5"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "an 的词类为 DET。"
+          },
+          "lexical": {
+            "upos": "DET"
+          }
+        },
+        {
+          "id": "n6",
+          "category": "word",
+          "tokenIds": [
+            "t6"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "apple 的词类为 NOUN。"
+          },
+          "lexical": {
+            "upos": "NOUN"
+          }
+        },
+        {
+          "id": "n7",
+          "category": "word",
+          "tokenIds": [
+            "t7"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "quickly 的词类为 ADV。"
+          },
+          "lexical": {
+            "upos": "ADV"
+          }
+        },
+        {
+          "id": "n8",
+          "category": "punctuation",
+          "tokenIds": [
+            "t8"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": ". 的词类为 PUNCT。"
+          }
+        },
+        {
+          "id": "np_boy",
+          "category": "noun_phrase",
+          "tokenIds": [
+            "t1",
+            "t2",
+            "t3"
+          ],
+          "children": [
+            {
+              "nodeId": "n1",
+              "function": "determiner",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "n2",
+              "function": "modifier",
+              "necessity": "optional"
+            },
+            {
+              "nodeId": "n3",
+              "function": "head",
+              "necessity": "required"
+            }
+          ],
+          "explanation": {
+            "summary": "名词短语，以 boy 为中心词。"
+          }
+        },
+        {
+          "id": "np_apple",
+          "category": "noun_phrase",
+          "tokenIds": [
+            "t5",
+            "t6"
+          ],
+          "children": [
+            {
+              "nodeId": "n5",
+              "function": "determiner",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "n6",
+              "function": "head",
+              "necessity": "required"
+            }
+          ],
+          "explanation": {
+            "summary": "an apple 是名词短语。"
+          }
+        },
+        {
+          "id": "main",
+          "category": "clause",
+          "tokenIds": [
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6",
+            "t7",
+            "t8"
+          ],
+          "children": [
+            {
+              "nodeId": "np_boy",
+              "function": "subject",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "n4",
+              "function": "predicate",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "np_apple",
+              "function": "direct_object",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "n7",
+              "function": "adjunct",
+              "necessity": "optional"
+            },
+            {
+              "nodeId": "n8",
+              "function": "punctuation",
+              "necessity": "not_applicable"
+            }
+          ],
+          "explanation": {
+            "summary": "主谓宾骨骼；quickly 是可选的方式状语。"
+          },
+          "clause": {
+            "form": "declarative",
+            "finiteness": "finite",
+            "voice": "active",
+            "polarity": "positive",
+            "pattern": "SVO",
+            "patternExplanation": "主谓宾骨骼；quickly 是可选的方式状语。"
+          }
+        }
+      ],
+      "relations": [
+        {
+          "id": "r1",
+          "type": "modifies",
+          "sourceNodeId": "n2",
+          "targetNodeId": "n3",
+          "explanation": {
+            "summary": "little 修饰 boy。"
+          }
+        },
+        {
+          "id": "r2",
+          "type": "modifies",
+          "sourceNodeId": "n7",
+          "targetNodeId": "n4",
+          "explanation": {
+            "summary": "quickly 修饰 ate。"
+          }
+        }
+      ],
+      "teachingPlans": [
+        {
+          "ownerNodeId": "np_boy",
+          "stages": [
+            {
+              "id": "skeleton",
+              "kind": "skeleton",
+              "title": "短语骨骼",
+              "visibleNodeIds": [
+                "n1",
+                "n3"
+              ],
+              "explanation": {
+                "summary": "保留限定词和中心名词。"
+              },
+              "omissions": [
+                {
+                  "nodeId": "n2",
+                  "reason": "optional_modifier",
+                  "explanation": "little 是可选的形容词修饰语。"
+                }
+              ]
+            },
+            {
+              "id": "full",
+              "kind": "complete",
+              "title": "添加特征",
+              "visibleNodeIds": [
+                "n1",
+                "n2",
+                "n3"
+              ],
+              "explanation": {
+                "summary": "little 修饰 boy。"
+              },
+              "omissions": []
+            }
+          ]
+        },
+        {
+          "ownerNodeId": "np_apple",
+          "stages": [
+            {
+              "id": "full",
+              "kind": "complete",
+              "title": "完整结构",
+              "visibleNodeIds": [
+                "n5",
+                "n6"
+              ],
+              "explanation": {
+                "summary": "按原词序显示全部直接子成分。"
+              },
+              "omissions": []
+            }
+          ]
+        },
+        {
+          "ownerNodeId": "main",
+          "stages": [
+            {
+              "id": "skeleton",
+              "kind": "skeleton",
+              "title": "基本骨骼",
+              "visibleNodeIds": [
+                "np_boy",
+                "n4",
+                "np_apple",
+                "n8"
+              ],
+              "explanation": {
+                "summary": "主句层面只省略方式状语；主语内部的修饰在自己的面板分析。"
+              },
+              "omissions": [
+                {
+                  "nodeId": "n7",
+                  "reason": "optional_modifier",
+                  "explanation": "quickly 是可选方式状语。"
+                }
+              ]
+            },
+            {
+              "id": "full",
+              "kind": "complete",
+              "title": "添加方式状语",
+              "visibleNodeIds": [
+                "np_boy",
+                "n4",
+                "np_apple",
+                "n7",
+                "n8"
+              ],
+              "explanation": {
+                "summary": "恢复完整原句。"
+              },
+              "omissions": []
+            }
+          ]
+        }
+      ],
+      "certainty": {
+        "level": "high",
+        "reason": "人工编写的规格示例；未进行独立语言学审校。"
+      },
+      "dependencies": {
+        "scheme": "ud-v2-basic",
+        "words": [
+          {
+            "id": "w1",
+            "form": "The",
+            "tokenIds": [
+              "t1"
+            ],
+            "upos": "DET"
+          },
+          {
+            "id": "w2",
+            "form": "little",
+            "tokenIds": [
+              "t2"
+            ],
+            "upos": "ADJ"
+          },
+          {
+            "id": "w3",
+            "form": "boy",
+            "tokenIds": [
+              "t3"
+            ],
+            "upos": "NOUN"
+          },
+          {
+            "id": "w4",
+            "form": "ate",
+            "tokenIds": [
+              "t4"
+            ],
+            "upos": "VERB"
+          },
+          {
+            "id": "w5",
+            "form": "an",
+            "tokenIds": [
+              "t5"
+            ],
+            "upos": "DET"
+          },
+          {
+            "id": "w6",
+            "form": "apple",
+            "tokenIds": [
+              "t6"
+            ],
+            "upos": "NOUN"
+          },
+          {
+            "id": "w7",
+            "form": "quickly",
+            "tokenIds": [
+              "t7"
+            ],
+            "upos": "ADV"
+          },
+          {
+            "id": "w8",
+            "form": ".",
+            "tokenIds": [
+              "t8"
+            ],
+            "upos": "PUNCT"
+          }
+        ],
+        "edges": [
+          {
+            "headWordId": "w3",
+            "dependentWordId": "w1",
+            "relation": "det"
+          },
+          {
+            "headWordId": "w3",
+            "dependentWordId": "w2",
+            "relation": "amod"
+          },
+          {
+            "headWordId": "w4",
+            "dependentWordId": "w3",
+            "relation": "nsubj"
+          },
+          {
+            "headWordId": null,
+            "dependentWordId": "w4",
+            "relation": "root"
+          },
+          {
+            "headWordId": "w6",
+            "dependentWordId": "w5",
+            "relation": "det"
+          },
+          {
+            "headWordId": "w4",
+            "dependentWordId": "w6",
+            "relation": "obj"
+          },
+          {
+            "headWordId": "w4",
+            "dependentWordId": "w7",
+            "relation": "advmod"
+          },
+          {
+            "headWordId": "w4",
+            "dependentWordId": "w8",
+            "relation": "punct"
+          }
+        ],
+        "note": "独立的 UD 基本依存层；教学层的 NP 节点不出现在词级依存树中。"
+      }
+    }
+  ],
+  "preferredAnalysisId": "reading_1",
+  "issues": [],
+  "provenance": {
+    "producer": "ai",
+    "reviewStatus": "unreviewed"
+  }
+}

@@ -1,0 +1,264 @@
+{
+  "schemaVersion": "1.0.0",
+  "profile": "sentence-lab-pedagogical-en-v1",
+  "source": {
+    "text": "In the garden.",
+    "language": "en",
+    "offsetUnit": "utf16_code_unit"
+  },
+  "status": "partial",
+  "tokens": [
+    {
+      "id": "t1",
+      "text": "In",
+      "range": {
+        "start": 0,
+        "end": 2
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t2",
+      "text": "the",
+      "range": {
+        "start": 3,
+        "end": 6
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t3",
+      "text": "garden",
+      "range": {
+        "start": 7,
+        "end": 13
+      },
+      "kind": "word"
+    },
+    {
+      "id": "t4",
+      "text": ".",
+      "range": {
+        "start": 13,
+        "end": 14
+      },
+      "kind": "punctuation"
+    }
+  ],
+  "analyses": [
+    {
+      "id": "reading_1",
+      "reading": "一个地点短语，缺少完整句上下文。",
+      "translation": "在花园里。",
+      "rootNodeId": "fragment",
+      "nodes": [
+        {
+          "id": "n1",
+          "category": "word",
+          "tokenIds": [
+            "t1"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "In 的词类为 ADP。"
+          },
+          "lexical": {
+            "upos": "ADP"
+          }
+        },
+        {
+          "id": "n2",
+          "category": "word",
+          "tokenIds": [
+            "t2"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "the 的词类为 DET。"
+          },
+          "lexical": {
+            "upos": "DET"
+          }
+        },
+        {
+          "id": "n3",
+          "category": "word",
+          "tokenIds": [
+            "t3"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": "garden 的词类为 NOUN。"
+          },
+          "lexical": {
+            "upos": "NOUN"
+          }
+        },
+        {
+          "id": "n4",
+          "category": "punctuation",
+          "tokenIds": [
+            "t4"
+          ],
+          "children": [],
+          "explanation": {
+            "summary": ". 的词类为 PUNCT。"
+          }
+        },
+        {
+          "id": "np_garden",
+          "category": "noun_phrase",
+          "tokenIds": [
+            "t2",
+            "t3"
+          ],
+          "children": [
+            {
+              "nodeId": "n2",
+              "function": "determiner",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "n3",
+              "function": "head",
+              "necessity": "required"
+            }
+          ],
+          "explanation": {
+            "summary": "名词短语。"
+          }
+        },
+        {
+          "id": "pp_garden",
+          "category": "prepositional_phrase",
+          "tokenIds": [
+            "t1",
+            "t2",
+            "t3"
+          ],
+          "children": [
+            {
+              "nodeId": "n1",
+              "function": "head",
+              "necessity": "required"
+            },
+            {
+              "nodeId": "np_garden",
+              "function": "complement",
+              "necessity": "required"
+            }
+          ],
+          "explanation": {
+            "summary": "介词短语。"
+          }
+        },
+        {
+          "id": "fragment",
+          "category": "fragment",
+          "tokenIds": [
+            "t1",
+            "t2",
+            "t3",
+            "t4"
+          ],
+          "children": [
+            {
+              "nodeId": "pp_garden",
+              "function": "unknown",
+              "necessity": "unknown"
+            },
+            {
+              "nodeId": "n4",
+              "function": "punctuation",
+              "necessity": "not_applicable"
+            }
+          ],
+          "explanation": {
+            "summary": "片段没有足够上下文确定其在完整句中的功能。"
+          }
+        }
+      ],
+      "relations": [],
+      "teachingPlans": [
+        {
+          "ownerNodeId": "np_garden",
+          "stages": [
+            {
+              "id": "full",
+              "kind": "complete",
+              "title": "完整结构",
+              "visibleNodeIds": [
+                "n2",
+                "n3"
+              ],
+              "explanation": {
+                "summary": "按原词序显示全部直接子成分。"
+              },
+              "omissions": []
+            }
+          ]
+        },
+        {
+          "ownerNodeId": "pp_garden",
+          "stages": [
+            {
+              "id": "full",
+              "kind": "complete",
+              "title": "完整结构",
+              "visibleNodeIds": [
+                "n1",
+                "np_garden"
+              ],
+              "explanation": {
+                "summary": "按原词序显示全部直接子成分。"
+              },
+              "omissions": []
+            }
+          ]
+        },
+        {
+          "ownerNodeId": "fragment",
+          "stages": [
+            {
+              "id": "full",
+              "kind": "complete",
+              "title": "完整结构",
+              "visibleNodeIds": [
+                "pp_garden",
+                "n4"
+              ],
+              "explanation": {
+                "summary": "按原词序显示全部直接子成分。"
+              },
+              "omissions": []
+            }
+          ]
+        }
+      ],
+      "certainty": {
+        "level": "low",
+        "reason": "只能分析短语内部，不能确定完整句结构。"
+      }
+    }
+  ],
+  "preferredAnalysisId": "reading_1",
+  "issues": [
+    {
+      "code": "fragment",
+      "severity": "warning",
+      "message": "可以分析短语内部，但不应补写主语和谓语。",
+      "tokenIds": [
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "analysisIds": [
+        "reading_1"
+      ]
+    }
+  ],
+  "provenance": {
+    "producer": "ai",
+    "reviewStatus": "unreviewed"
+  }
+}
